@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  mr: MyString
+  dob: 2019-03-13 17:52:19
+  gender: 1
+  admission: 1
+  allergies: 1
+  chronic_conditions: 1
+  medications: 1
+  diagnostic_procedures: 1
+  diagnoses: 1
+  treatments: 1
+
+two:
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  mr: MyString
+  dob: 2019-03-13 17:52:19
+  gender: 1
+  admission: 1
+  allergies: 1
+  chronic_conditions: 1
+  medications: 1
+  diagnostic_procedures: 1
+  diagnoses: 1
+  treatments: 1

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  moment: 2019-03-13 17:22:55
+  diagnoses: 1
+  symptoms: 1
+  observations: 1
+
+two:
+  moment: 2019-03-13 17:22:55
+  diagnoses: 1
+  symptoms: 1
+  observations: 1
