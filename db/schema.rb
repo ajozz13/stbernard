@@ -22,13 +22,15 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
   end
 
   create_table "allergies", force: :cascade do |t|
+    t.integer "patient_id"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "diagnoses", force: :cascade do |t|
-    t.string "coding_system"
+    t.integer "patient_id"
+    t.string "coding_systen"
     t.string "code"
     t.text "description"
     t.datetime "created_at", null: false
@@ -36,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
   end
 
   create_table "diagnostic_procedures", force: :cascade do |t|
+    t.integer "patient_id"
     t.text "description"
     t.datetime "moment"
     t.datetime "created_at", null: false
@@ -67,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
   end
 
   create_table "medication_orders", force: :cascade do |t|
+    t.integer "patient_id"
     t.string "name"
     t.integer "unit"
     t.decimal "dosage"
@@ -83,6 +87,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
   end
 
   create_table "observations", force: :cascade do |t|
+    t.integer "patient_id"
     t.text "description"
     t.datetime "moment"
     t.datetime "created_at", null: false
@@ -100,27 +105,24 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
     t.string "first_name"
     t.string "middle_name"
     t.string "last_name"
-    t.string "mr"
+    t.string "honorific"
     t.datetime "dob"
     t.integer "gender"
     t.integer "admission"
-    t.integer "allergies"
-    t.integer "chronic_conditions"
-    t.integer "medications"
-    t.integer "diagnostic_procedures"
-    t.integer "diagnoses"
-    t.integer "treatments"
+    t.integer "facility_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "symptoms", force: :cascade do |t|
+    t.integer "patient_id"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "treatments", force: :cascade do |t|
+    t.integer "patient_id"
     t.text "description"
     t.text "necesity"
     t.datetime "created_at", null: false
