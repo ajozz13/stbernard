@@ -33,6 +33,23 @@ end
 
 describe "Patient API POST Requests", :type => :request do
   url = '/api/v1/patients'
+=begin
+  # This post test works in postman but not here....
+  it "Successful POST to: #{ url }" do
+    hdrs = { "CONTENT_TYPE" => "application/json" }
+    post url, params: '{ "patient": { "first_name": "Mark", "middle_name": "M", "last_name": "Martinez", "honorific": "Mr", "dob": "1971-01-12", "gender": 0, "facility_id": 1 } }', headers: hdrs
+    puts "#{ response.body }"
+    #expect( response ).to be_successful
+    expect( response.code ).to eq( "201" )
+    json = JSON.parse( response.body )
+    puts "#{ json }"
+    expect( json['code'] ).to be( 1 )
+    expect( json['message'] ).to match( /Created/ )
+    expect( json['is_error'] ).to be( false )
+    expect( json['url'] ).to_not be_empty
+    expect( json['result'].length ).to be >= 0
+  end
+=end
   it "Unsuccessful POST to: #{ url }" do
     post url, params: { patient: { first_name: 'Mark', middle_name: 'M', last_name: 'Martinez',
       honorific: 'Mr', dob: '1971-01-12', gender: 0 } }
