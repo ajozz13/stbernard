@@ -1,4 +1,5 @@
 class Patient < ApplicationRecord
+  belongs_to :facility
   has_many :admissions
   has_many :allergies
   has_many :diagnoses, through: :admissions
