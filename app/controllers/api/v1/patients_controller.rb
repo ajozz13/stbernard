@@ -15,7 +15,7 @@ class Api::V1::PatientsController < ApplicationController
 
   # POST /patients
   def create
-   @patient = Patient.new(article_params)
+   @patient = Patient.new( patient_params )
    if @patient.save
      respond( { patient: @patient, status: :created, location: api_v1_patient_url(@patient) }, 0, "Patient Created.", :created )
    else

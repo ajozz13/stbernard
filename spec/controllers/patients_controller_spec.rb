@@ -4,7 +4,7 @@
 
 require 'rails_helper'
 
-describe "Patient API", :type => :request do
+describe "Patient API GET Requests", :type => :request do
   url = '/api/v1/patients'
   it "Successul to GET request to: #{ url }" do
     get url
@@ -27,6 +27,22 @@ describe "Patient API", :type => :request do
     expect( json['is_error'] ).to be( true )
     expect( json['url'] ).to_not be_empty
     expect( json['result'] ).to match( /Couldn't find/ )
+  end
+
+end
+
+describe "Patient API POST Requests", :type => :request do
+  url = '/api/v1/patients'
+  it "Unsuccessful POST to: #{ url }" do
+    post url, :params => { :patient => { first_name: 'Mark', middle_name: 'M', last_name: 'Martinez',
+      honorific: 'Mr', dob: '1971-01-12', gender: 0 } }
+    expect( response.code ).to eq( "422" )
+    json = JSON.parse( response.body )
+    expect( json['code'] ).to be( 1 )
+    expect( json['message'] ).to match( /not Created/ )
+    expect( json['is_error'] ).to be( true )
+    expect( json['url'] ).to_not be_empty
+    expect( json['result'].length ).to be >= 0
   end
 
 end
