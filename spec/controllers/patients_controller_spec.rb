@@ -34,7 +34,7 @@ end
 describe "Patient API POST Requests", :type => :request do
   url = '/api/v1/patients'
   it "Unsuccessful POST to: #{ url }" do
-    post url, :params => { :patient => { first_name: 'Mark', middle_name: 'M', last_name: 'Martinez',
+    post url, params: { patient: { first_name: 'Mark', middle_name: 'M', last_name: 'Martinez',
       honorific: 'Mr', dob: '1971-01-12', gender: 0 } }
     expect( response.code ).to eq( "422" )
     json = JSON.parse( response.body )
