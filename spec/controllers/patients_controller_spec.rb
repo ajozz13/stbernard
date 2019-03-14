@@ -5,8 +5,9 @@
 require 'rails_helper'
 
 describe "Patient API", :type => :request do
-  it 'responds to GET request' do
-    get '/api/v1/patients'
+  url = '/api/v1/patients'
+  it "Successul to GET request to: #{ url }" do
+    get url
     expect( response ).to be_successful
     json = JSON.parse( response.body )
     #puts "#{ json }"
@@ -17,8 +18,8 @@ describe "Patient API", :type => :request do
     expect( json['result'].length ).to be >= 0
   end
 
-  it 'Failure response to GET request' do
-    get '/api/v1/patients/99'
+  it "Fail GET request to: #{ url }/99" do
+    get "#{ url }/99"
     expect( response.code ).to eq( "404" )
     json = JSON.parse( response.body )
     expect( json['code'] ).to be( 1 )
