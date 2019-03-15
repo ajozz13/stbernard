@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
     t.integer "unit"
     t.decimal "dosage"
     t.integer "route"
-    t.integer "frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -71,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
   create_table "order_frequencies", force: :cascade do |t|
     t.string "value"
     t.integer "unit"
+    t.integer "medication_order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
