@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>St Bernard Application</h1>
+    <div class="dropdown-divider"></div>
+
+    <br />
+    <table class="table table-striped" id="patient_table">
+      <caption>Patients</caption>
+    <thead>
+      <tr><th scope="col">#</th><th scope="col">Name</th><th scope="col">Gender</th><th scope="col">DOB</th><th scope="col">Link</th></tr>
+    </thead>
+    <tbody></tbody>
+    </table>
+
+  </div>
+  <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;" >
+      <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="true" data-delay="3500" style="position: absolute; top: 10; right: 0;">
+      <div class="toast-header">
+      <strong class="mr-auto"></strong>
+      <small></small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="toast-body"></div>
+      </div>
+  </div>
+
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+
+var mainApp = {
+  host: "http://localhost:3000",
+  service: "api/v1/patients/"
+};
+
+function getURL( exs ){
+  var s = ( exs ) ? exs : "";
+  return mainApp.host+"/"+mainApp.service + s;
+}
+
+function message( title, msg ){
+  $(".toast").find( ".mr-auto" ).text( title );
+  $(".toast").find( ".toast-body" ).text( msg );
+  $(".toast").toast('show');
+}
+function handleError( xhr, textStatus, errorThrown ){
+    console.log( xhr );
+    var resp = xhr.responseJSON;
+    var str = resp.message + " " + resp.url + " ["+ resp.code +"]";
+    message( errorThrown + " : " + textStatus, str );
+}
+
+
+function loadTable(){
+  $.get( getURL(), function( data ) {
+    console.log( data );
+    loadTableDetails( "#patient_table tbody", data.result );
+    message( "Success", data.message + ". Table has been loaded." );
+  }).fail(function( xhr, textStatus, errorThrown ) {
+    handleError( xhr, textStatus, errorThrown );
+  }).always(function() {
+    console.log( "load table finished" );
+  }, 'json');
+}
+
+function loadTableDetails( target, data ){
+  for( var i = 0; i < data.length; i++ ) {
+    var entry = data[ i ];
+    $( target ).append( createTableRow( entry ) );
+  }
+}
+
+function createTableRow( entry ){
+  row = $( "<tr/>", { id: entry.id } );
+  row.append( $( "<td/>" ).text( entry.id ) );
+  var n = entry.honorific + " " +entry.first_name + " " + entry.middle_name + " " + entry.last_name;
+  row.append( $( "<td/>" ).text( n ) );
+  row.append( $( "<td/>" ).text( entry.gender ) );
+  row.append( $( "<td/>" ).text( displayDate( entry.dob ) ) );
+  var link = $( "<a/>", { href: getURL( entry.id ), target: "_blank" } ).text( "JSON" );
+  row.append( $( "<td/>" ).html( link ) );
+  return row;
+}
+function pad(n){ return n<10 ? '0'+n : n };
+function displayDate( input ){
+  var d = new Date( input );
+  return d.getFullYear() + "-" + pad( d.getMonth()+1 )+ "-" +pad( d.getDate() );
+}
+
+$(function (){
+    loadTable();
+});
+
+</script>
+</body>
+</html>
