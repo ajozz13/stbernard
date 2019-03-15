@@ -37,10 +37,8 @@ describe "Patient API POST Requests", :type => :request do
   # This post test works in postman but not here....
   it "Successful POST to: #{ url }" do
     hdrs = { "CONTENT_TYPE" => "application/json" }
-    params = { first_name: "Mark", middle_name: "M", last_name: "Martinez", honorific: "Mr", dob: "1971-01-12", gender: 0, facility_id: 1 }
-    post url, body: params.to_json, headers: hdrs
-    #post url, body: '{ "patient": { "first_name": "Mark", "middle_name": "M", "last_name": "Martinez", "honorific": "Mr", "dob": "1971-01-12", "gender": 0, "facility_id": 1 } }',
-      #format: 'json', headers: hdrs
+    params = { patient: { first_name: "Mark", middle_name: "M", last_name: "Martinez", honorific: "Mr", dob: "1971-01-12", gender: 0, facility_id: 1 } }
+    post url, params: params.to_json, as: :json
     puts "#{ response.body }"
     #expect( response ).to be_successful
     expect( response.code ).to eq( "201" )
