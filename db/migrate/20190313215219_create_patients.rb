@@ -9,7 +9,6 @@ class CreatePatients < ActiveRecord::Migration[5.2]
       t.integer :gender
       t.integer :admission
       t.integer :facility_id
-      t.integer :admission_id
 
       t.timestamps
     end
