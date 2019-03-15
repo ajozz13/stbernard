@@ -6,7 +6,6 @@ class CreateMedicationOrders < ActiveRecord::Migration[5.2]
       t.integer :unit
       t.decimal :dosage
       t.integer :route
-      t.integer :frequency
 
       t.timestamps
     end
