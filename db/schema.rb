@@ -49,24 +49,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "frequency_units", force: :cascade do |t|
-    t.integer "hour"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "genders", force: :cascade do |t|
-    t.integer "gender"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "mass_units", force: :cascade do |t|
-    t.integer "unit"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "medication_orders", force: :cascade do |t|
     t.integer "patient_id"
     t.string "name"
@@ -74,12 +56,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
     t.decimal "dosage"
     t.integer "route"
     t.integer "frequency"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "medication_routes", force: :cascade do |t|
-    t.integer "route"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -106,7 +82,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
     t.string "honorific"
     t.datetime "dob"
     t.integer "gender"
-    t.integer "admission"
     t.integer "facility_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
