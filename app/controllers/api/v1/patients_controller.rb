@@ -10,7 +10,9 @@ class Api::V1::PatientsController < ApplicationController
 
   # GET /patients/1
   def show
-   respond @patient, 0, "Request completed.", :ok
+   #obj = ( @patient, include: :admissions )
+   #respond obj, 0, "Request completed.", :ok
+   render json: @patient, include: [ :admissions, :allergies, :diagnoses, :treatments, :medication_orders, :diagnostic_procedures ]
   end
 
   # POST /patients
@@ -55,6 +57,7 @@ class Api::V1::PatientsController < ApplicationController
   def set_patient
     begin
       @patient = Patient.find( params[:id] )
+      ##assign related table data
     rescue => e
       respond e, 1, "Request not completed."
     end
