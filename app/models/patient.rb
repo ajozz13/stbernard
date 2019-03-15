@@ -9,4 +9,5 @@ class Patient < ApplicationRecord
   has_many :diagnoses, through: :admissions
   has_many :symptoms, through: :admissions
   has_many :observations, through: :admissions
+  enum gender: [ :male, :female, :other ]
 end
