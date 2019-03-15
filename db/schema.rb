@@ -14,9 +14,10 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
 
   create_table "admissions", force: :cascade do |t|
     t.datetime "moment"
-    t.integer "diagnoses"
-    t.integer "symptoms"
-    t.integer "observations"
+    t.integer "patient_id"
+    t.integer "diagnosis_id"
+    t.integer "symptom_id"
+    t.integer "observation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,8 +30,8 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
   end
 
   create_table "diagnoses", force: :cascade do |t|
-    t.integer "patient_id"
-    t.string "coding_systen"
+    t.integer "admission_id"
+    t.string "coding_system"
     t.string "code"
     t.text "description"
     t.datetime "created_at", null: false
@@ -87,7 +88,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
   end
 
   create_table "observations", force: :cascade do |t|
-    t.integer "patient_id"
+    t.integer "admission_id"
     t.text "description"
     t.datetime "moment"
     t.datetime "created_at", null: false
@@ -115,7 +116,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
   end
 
   create_table "symptoms", force: :cascade do |t|
-    t.integer "patient_id"
+    t.integer "admission_id"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
