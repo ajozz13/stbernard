@@ -1,3 +1,3 @@
 class OrderFrequency < ApplicationRecord
-  has_one :frequency_unit
+  enum unit: [ :hour, :half_hour, :fifteen_minutes ]
 end
