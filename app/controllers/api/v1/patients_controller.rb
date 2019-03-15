@@ -12,7 +12,7 @@ class Api::V1::PatientsController < ApplicationController
   def show
    #obj = ( @patient, include: :admissions )
    #respond obj, 0, "Request completed.", :ok
-   render json: @patient, include: [ :admissions, :allergies, :diagnoses, :treatments, :medication_orders, :diagnostic_procedures ]
+   render json: @patient, include: [ :admissions, :allergies, :diagnoses, :symptoms, :treatments, :diagnostic_procedures, :medication_orders ]
   end
 
   # POST /patients
