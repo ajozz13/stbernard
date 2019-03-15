@@ -15,9 +15,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_215527) do
   create_table "admissions", force: :cascade do |t|
     t.datetime "moment"
     t.integer "patient_id"
-    t.integer "diagnosis_id"
-    t.integer "symptom_id"
-    t.integer "observation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
