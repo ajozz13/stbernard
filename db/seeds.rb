@@ -21,7 +21,7 @@ Patient.create( first_name: 'Alina', middle_name: 'P', last_name: 'Guzman', hono
 Patient.create( first_name: 'Sin', middle_name: 'P', last_name: 'Papa', honorific: 'Ms', dob: '1995-02-16', gender: 1, facility_id: 1 )
 
 #admissions
-Admission.create( moment: DateTime.now.to_datetime, patient_id: 1, diagnosis_id: 1, symptom_id: 1, observation_id: 1 )
+Admission.create( moment: DateTime.now.to_datetime, patient_id: 1 )
 Diagnosis.create( admission_id: 1, coding_system: "ICD-10-CM", code: "C50.0", description: "Diseases of the blood and blood-forming organs" )
 Symptom.create( admission_id: 1, description: "Patient complains of acute shoulder pain" )
 Symptom.create( admission_id: 1, description: "Patient complains or right knee pain" )
