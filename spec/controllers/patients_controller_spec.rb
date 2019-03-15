@@ -37,6 +37,7 @@ describe "Patient API GET Requests", :type => :request do
     expect( json['last_name'] ).to eq( "Ochoa" )
     expect( json['gender'] ).to eq( "male" )
     expect( json['admissions'].length ).to be >= 0
+    expect( json['symptoms'].length ).to be >= 0
     expect( json['allergies'].length ).to be >= 0
     expect( json['diagnoses'].length ).to be >= 0
     expect( json['treatments'].length ).to be >= 0
