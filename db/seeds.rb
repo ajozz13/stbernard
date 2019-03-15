@@ -26,3 +26,17 @@ Diagnosis.create( admission_id: 1, coding_system: "ICD-10-CM", code: "C50.0", de
 Symptom.create( admission_id: 1, description: "Patient complains of acute shoulder pain" )
 Symptom.create( admission_id: 1, description: "Patient complains or right knee pain" )
 Observation.create( admission_id: 1, description: "The patient seems to be hipocondriac", moment: DateTime.now.to_datetime )
+
+#allergies
+Allergy.create( patient_id: 1, description: "Atopic Eczema" )
+Allergy.create( patient_id: 1, description: "Skin Allergy" )
+
+#treatments
+Treatment.create( patient_id: 1, description: "Dexoflex", necesity: "absolutely necessary" )
+
+#medication_orders -
+MedicationOrder.create( patient_id: 1, name: "Dexoflex", unit: :mg, dosage: 10, route: :po )
+OrderFrequency.create( value: "Every", unit: :hour, medication_order_id: 1 )
+
+#diagnostic_procedures
+DiagnosticProcedure.create( patient_id: 1, description: "resume normal routine", moment: DateTime.now.to_datetime )
